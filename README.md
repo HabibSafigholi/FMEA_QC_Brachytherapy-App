@@ -10,5 +10,4 @@ brachytherapy. Then the goal here was to create a WebApp to assess the risk in H
 memebr including Radiation Oncology Dr, Medical Physicit, Radiotherapist, .... can login to the APP and change the value of Occurance "O", Detectability
 "D", and Severity "D" and finally Risk Priority Number "RPN" for that sub task specific to pateint, and save it in the database.
 I used SQLlite 3 to biuld my databse, but due to confidentiality of the data, you have to make your own database. FQMBrachy, is able to do risk analysis 
-specific to patient, and remind the treatment team, which process/substeps include more risk; which later can give a guide to department how they update
-their treatmnet protocol,....
+specific to patient, and remind the treatment team, which process/substeps include more risk; which later can give a guide to department how they update their treatmnet protocol,....
