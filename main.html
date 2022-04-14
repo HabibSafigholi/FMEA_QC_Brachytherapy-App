@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/main.css" media="screen"/>
+    <title>FMEA Tg100 QM Brachy Tasks</title>
+</head>
+<body>
+    <div class="pageheader">
+      <h1 class="titlebar">FMEA QM Brachytherapy Tasks for {{ user.name }}</h1>  
+	  <br>
+      <h2 class="titlebar" >Choose HDR treatment site:</h2>
+	  <h2 style="background-color:tomato;">
+      <form action="/action_page.php">
+        <input type="radio" id="html" name="fav_language" value="HTML">
+        <label class="titlebar" for="html">GYN</label>
+        <input type="radio" id="css" name="fav_language" value="CSS">
+        <label class="titlebar" for="css">Breast</label>
+        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+        <label class="titlebar" for="javascript">Skin</label>
+        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+        <label class="titlebar" for="javascript">Rectal</label>
+        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+        <label class="titlebar" for="javascript">Prostate</label>
+
+      </form> 
+     <h2 class="titlebar">Choose the HDR source:</h2>
+     <h2 style="background-color:tomato;">
+     <form action="/action_page.php">
+       <input type="radio" id="html" name="fav_language" value="HTML">
+       <label class="titlebar" for="html">Ir-192</label>
+       <input type="radio" id="css" name="fav_language" value="CSS">
+       <label class="titlebar" for="css">Co-60</label>
+       <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+       <label class="titlebar" for="javascript">Yb-169</label>
+
+      </form>
+			
+    </div>
+    <div class="container">
+        <div class="folders">
+            <div class="header">Major FMEA steps</div>
+            <button class="blue icon-new" id="new_folder_button">New</button>
+            {% for folder in folders %}
+                <a class="folderitem" href="?folderid={{ folder.id }}">{{ folder.name }}</a>
+            {% endfor %}
+            <div class="controls">
+                <button class="gray icon-settings">Settings</button>
+                <button class="gray icon-exit" id="logout_button">Logout</button> <a href="/logout">Logout</a> 
+
+
+            </div>
+        </div>
+        <div class="items">
+            <div class="header">Minor FMEA steps</div>
+            <button class="blue icon-new" id="new_task_button">New</button>
+            {% for task in tasks %}
+                <a class="itempreview" href="?folderid={{ task['folderid'] }}&id={{ task['id'] }}">
+                    <div class="itempreviewheader">{{ task['title'] }}</div>
+                    <div class="itempreviewtext">{{ task['notes'][:50] }}...</div>
+                    <div class="itempreviewtime">{{ task['due'] }}</div>
+                </a>
+            {% endfor %}
+        </div>
+        <div class="main">
+            <form method="POST" enctype="multipart/form-data" action="/save_task">
+                <div class="maintitle"><input type="text" name="title" value="{{maintask.title }}" placeholder="Task title" class="tasktitle"></div>
+                <div class="two-columns">
+                    <div><label for="due"> Submit Date</label></div>
+                   <input type="date" name="due" value="{{ maintask.due }}" placeholder=""> 
+                   <!-- <div><label for="reminder">Reminder</label></div> -->
+<!--                    <input type="date" name="reminder" value="{{ maintask.reminder }}" placeholder="">
+                    <div><label for="created">Import to DB</label></div>
+	                <input readonly type="date" name="created" value="{{ maintask.created }}" placeholder="">
+-->				
+                    <div><label for="category">Category</label></div>
+                    <select name="category" value="{{ maintask.category }}">
+                        <option {{ "selected='selected'" if maintask.category == 'Minor Step' else "" }}>Minor step</option>
+                        <option {{ "selected='selected'" if maintask.category == 'Major Step' else "" }}>Major step</option>
+                        <option {{ "selected='selected'" if maintask.category == 'Others' else "" }}>Other</option>
+                    </select>                    
+<!--                    <div><label for="priority">Priority</label></div>
+                    <select name="priority" value="{{ maintask.priority }}">
+                        <option {{ "selected='selected'" if maintask.priority == 1 else "" }}>1</option>
+                        <option {{ "selected='selected'" if maintask.priority == 2 else "" }}>2</option>
+                        <option {{ "selected='selected'" if maintask.priority == 3 else "" }}>3</option>
+                    </select>
+-->					
+					<div><label for="Potentail_failure_mode">Potential failure mode</label></div>
+                    <input type="text" name="Potentail_failure_mode" value="{{ maintask.Potentail_failure_mode }}" placeholder="">
+					
+					<div><label for="Potentail_cause_failure">Potential failure cause</label></div>
+                    <input type="text" name="Potentail_cause_failure" value="{{ maintask.Potentail_cause_failure }}" placeholder="">
+					
+					<div><label for="Potentail_effects_failure">Potential failure effects</label></div>
+                    <input type="text" name="Potentail_effects_failure" value="{{ maintask.Potentail_effects_failure }}" placeholder="">
+					
+					<div><label for="Occurrence">Occurrence (O) : [1,10]</label></div>
+                    <input type="text" name="Occurrence" value="{{ maintask.Occurrence }}" placeholder="">
+
+					<div><label for="Severity">Severity (S) : [1,10]</label></div>
+                    <input type="text" name="Severity" value="{{ maintask.Severity }}" placeholder="">
+					<div><label for="Detect">Detectability (D) : [1,10]</label></div>
+                    <input type="text" name="Detect" value="{{ maintask.Detect }}" placeholder="">
+										
+					<div><label for="RPN">RPN = O*S*D : [1,1000]</label></div>
+                    <input type="text" name="RPN" value="{{ maintask.RPN }}" placeholder="">
+					
+                    <div><label for="status">Status</label></div>
+                    <select name="status" value="{{ maintask.status }}">
+                        <option {{ "selected='selected'" if maintask.status == "Unstarted" else "" }}> open</option>
+                        <option {{ "selected='selected'" if maintask.status == "In progress" else "" }}>in progress</option>
+                        <option {{ "selected='selected'" if maintask.status == "Waiting on response" else "" }}>waiting for check</option>
+                    </select> 
+                </div>
+                <div class="maintext">
+                    <textarea name="notes">{{ maintask.notes }}</textarea>
+                </div>
+                <input type="hidden" name="id" value="{{ maintask.id }}">  
+                <input type="hidden" name="folderid" value="{{ folderid }}">   
+                <input type="hidden" name="userid" value="{{ user.userid }}">
+                <input type="submit" name="submit-save" class="blue icon-save" value="Save update">
+                <input type="submit" name="submit-close" class="green icon-complete" value="Complete & close">
+                <input type="submit" name="submit-delete" class="red icon-delete" value="Cancel & delete">
+                <input type="button" name="button-share" class="gray icon-share" value=" ">
+                <input type="button" name="button-print" class="gray icon-print" value=" ">
+         </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+/* make style for the html, and make it beautiful*/
+/* CORE STRUCTURE */
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    font-family: Helvetica, sans-serif;
+	display: grid;
+    overflow-y:hidden;
+	background-color: #f8f8f8f8;
+}
+ /* . below will select any name with class of container; ref to html*/
+
+
+.container {
+	margin: auto;
+	padding: 20px;
+	border: 1px  solid #ccc;
+	border-radius: 10px; 
+	background-color: #ffffff;
+	
+}
+input {
+    padding: 1px 0 1px  30px;
+    margin: 5px 0 5px 0;
+	font-size:1.2em;
+	border-radius: 5px;
+    border: 1px solid #ccc;   
+}
+
+
+
+/* INPUT STYLES */
+
+
+
+input[type='submit']:hover {
+    background-color: rgba(96, 165, 250, 2);   
+}
+  /* icon app*/
+.icon_QM_tasker {
+	background:url('/static/icons/task-done-flat.svg') no-repeat left center;
+	padding-left: 40px;     
+}
+
+.icon-login {
+	background:url('/static/icons/log-in-outline.svg') no-repeat left center;
+}
+
+.small {
+    font-size: small ;
+} 
+
+.alert {
+	border: 3px solid rgba (239, 68, 68, 1);
+	border-radius: 4px;
+	background-color: tomato;
+	color: white;
+	padding: 10px;
+	
+}

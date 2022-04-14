@@ -1,0 +1,317 @@
+
+/* CORE STRUCTURE */
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    font-family: Helvetica, sans-serif;
+    overflow-y:hidden;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1.3fr 2.2fr 42%;
+    gap: 5px 5px;
+    height: 100%;
+    grid-template-areas:
+      "folders items main"
+}
+
+/* Special rule that will change to a 1 column layout when on devices of screen resolution less than 800 pixels wide */
+@media screen and (max-width: 800px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 5px 5px;
+        height: 100%;
+        grid-template-areas:
+        "folders"
+        "items"
+        "main"
+    }
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* HEADER SECTION */
+
+.pageheader {
+    display: grid;
+    grid-template-columns: 0.4fr 0.5fr; 
+    background-color: rgba(75, 85, 99,1);
+    border-bottom: 1px solid #ccc;
+	float: center;
+}
+
+.pageheader .titlebar {
+    padding: 4px;
+    font-size: x-large;
+    color: white;
+	height: 7px;
+}
+
+.controls {
+    bottom: 0;
+}
+
+/* FOLDERS */
+
+.folders { 
+    grid-area: folders; 
+    background-color: #f8f6f8;
+    border-right: 1px solid #ccc;
+	font-size: large;
+	font-weight: bold;
+    overflow-y: auto;
+    padding-bottom: 5em;
+}
+
+.folders .header {
+    font-size: x-large;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+}
+
+.folderitem {
+    padding: 5px 5px 5px 30px;
+    margin: 5px 5px 5px 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    background:url('/static/icons/folder-outline.svg') no-repeat left center;
+    /* the following are to make the <a> behave like a <div> */
+    display: block;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+
+.folderitem:hover {
+    background-color: #f0f0f0;
+}
+.highlight {
+    background-color: rgba(254, 243, 199,1);
+}
+
+/* ITEMS */
+
+.items { 
+    grid-area: items; 
+	font-weight: bold;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+    padding-bottom: 5em;
+
+}
+
+.items .header {
+    font-size: x-large;
+
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+}
+
+.itempreview {
+    padding-bottom: 1em;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    /* the following are to make the <a> behave like a <div> */
+    display: block;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+
+.itempreview:hover {
+    background-color: #f8f6f8;
+}
+
+.itempreviewheader {
+    font-weight: bold;
+}
+
+.itempreviewtext {
+    color: #777;
+}
+
+.itempreviewtime {
+    font-size: x-small;
+    color: blue;
+}
+.highlight {
+    background-color: rgba(254, 243, 199,1);
+}
+
+/* MAIN TASK FORM */
+
+.main { 
+    grid-area: main; 
+    overflow-y: auto;
+    padding-bottom: 5em;
+    padding-right: 10px;
+	
+}
+
+.maintitle {
+    font-size: x-large;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+	
+}
+
+.maintext {
+    padding: 2px 2px 2px 2px;
+    margin: 2px 2px 2px 2px;
+    width: 99%;
+	float: center;
+    background-color: #f1f1f1;
+ 	height: 75px;
+	overflow-y: auto;
+}
+
+/* FORM FORMATTING */
+
+.two-columns {
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+}
+
+.tasktitle {
+    font-size: x-large;
+    width: 100%;
+
+}
+
+.two-columns div {
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    text-align: right;
+}
+
+
+.main textarea {
+    width: 100%;
+    height: 12em;
+    line-height: 1.2em;
+    
+}
+
+/* INPUT STYLES */
+
+button {
+    background-color: rgba(59, 130, 246, 1);
+    color: white;
+    padding: 5px 5px 5px 25px;
+    margin: 5px 5px 5px 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 1fr;
+    display: inline-block;
+    height: 2em;
+}
+input[type='button'] {
+    background-color: rgba(59, 130, 246, 1);
+    color: white;
+    padding: 5px 5px 5px 25px;
+    margin: 5px 5px 5px 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 1fr;
+    display: inline-block;
+    height: 2em;
+}
+input[type='submit'] {
+    background-color: rgba(59, 130, 246, 1);
+    color: white;
+    padding: 5px 5px 5px 25px;
+    margin: 5px 5px 5px 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 1fr;
+    display: inline-block;
+    height: 2em;
+}
+button:hover, input[type='button']:hover, input[type='submit']:hover {
+    background-color: rgba(96, 165, 250,1);
+}
+button.blue, input[type='button'].blue, input[type='submit'].blue{
+    background-color: rgba(59, 130, 246, 1);
+}
+button.blue:hover, input[type='button'].blue:hover, input[type='submit'].blue:hover {
+    background-color: rgba(96, 165, 250,1);
+}
+button.red, input[type='button'].red, input[type='submit'].red{
+    background-color: rgba(239, 68, 68, 1);
+}
+button.red:hover, input[type='button'].red:hover, input[type='submit'].red:hover {
+    background-color: rgba(248, 113, 113,1);
+}
+button.green, input[type='button'].green, input[type='submit'].green{
+    background-color: rgba(16, 185, 129,1);
+}
+button.green:hover, input[type='button'].green:hover, input[type='submit'].green:hover {
+    background-color: rgba(52, 211, 153,1);
+}
+button.gray, input[type='button'].gray, input[type='submit'].gray{
+    background-color: rgba(107, 114, 128,1);
+}
+button.gray:hover, input[type='button'].gray:hover, input[type='submit'].gray:hover {
+    background-color: rgba(156, 163, 175,1);
+}
+
+input {
+    padding: 2px;
+    margin: 2px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #777;
+}
+
+select {
+    padding: 2px;
+    margin: 2px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #777;
+}
+
+textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #777;
+}
+
+/* ICONS */
+
+.icon-exit {
+    background:url('/static/icons/exit-outline.svg') no-repeat left center;
+}
+.icon-new {
+    background:url('/static/icons/add-circle-outline.svg') no-repeat left center;
+}
+.icon-settings {
+    background:url('/static/icons/settings-outline.svg') no-repeat left center;
+}
+.icon-save {
+    background:url('/static/icons/save-outline.svg') no-repeat left center;
+}
+.icon-complete {
+    background:url('/static/icons/checkmark-circle-outline.svg') no-repeat left center;
+}
+.icon-delete {
+    background:url('/static/icons/trash-outline.svg') no-repeat left center;
+}
+.icon-share {
+    background:url('/static/icons/share-social-outline.svg') no-repeat left center;
+}
+.icon-print {
+    background:url('/static/icons/print-outline.svg') no-repeat left center;
+}
+
+
+	

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang ="en">
+   <head>
+       <meta name="viewport"  content = "width=device-width, initial-scale=1">
+	   <link rel="stylesheet" type= "text/css" href="/static/login.css" media ="screen">
+       <title>QM Brachy_team </title>
+   </head>
+   <body>
+        <div class= "container">
+	       <h1 class="icon-tasker">FQMBrachy</h1> 
+		   {%if alert != ""%}
+           <p class="alert"> {{ alert }}</p>
+           {% endif %}		  
+	       <p>please login to continue</p>      
+		   <form action= "/login" method ="POST"> 
+		       <div> <input type="text"     name="userid"    placeholder ="userid"></div>
+			   <div> <input type="password" name="password"  placeholder ="password"></div>
+			   <label for="user">Role </label>
+			    <select id="user" name="user">
+                  <option value="Radonco">RadOnc</option>
+                  <option value="MedPhys">MedPhy</option>
+                  <option value="Dosimeter">Dosi</option>
+                  <option value="Therapist">Ther</option>
+				  <option value="Nurse">Nur</option>
+               </select>
+			   <input type="submit"   name="submit"    value="login" class ="icon-login"> 
+		       <div><hr></div>  		   
+		       <div class ="small"> No account? <a href ="/register"> Register! </a> </div>  
+		</form>
+	  </div>
+   </body>
+</html>
+
+
